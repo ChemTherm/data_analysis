@@ -6,6 +6,8 @@ from datetime import datetime
 filename = "Verdampfer_Labview_results/VX-001/VX-001_Messung1_03042023_Anlage.txt"
 filename = "Verdampfer_Labview_results/VX-001/VX-001_Messung2_04042023_Anlage.txt"
 filename = "Verdampfer_Labview_results/VX-001/VX-001_Messung1_05042023_Anlage.txt"
+filename = "Verdampfer_Labview_results/VX-001/VX-001_Messung2_06042023_Anlage.txt"
+#filename = "Verdampfer_Labview_results/VX-001/VX-001_Messung3_06042023_Anlage.txt"
 
 with open(filename, 'r') as file:
     headers = file.readline().strip().split('\t') # Lese die Überschriften aus der ersten Zeile
@@ -32,7 +34,7 @@ for i, value in enumerate(data['Zeile']):
 
 
 x = data['t_mess']
-y = data['Druck2']
+y = data['Druck1']
 
 sns.set_style('whitegrid') # Verwende den "darkgrid"-Stil von Seaborn
 sns.set_palette('colorblind') # Verwende eine farbenblinde Farbpalette
@@ -43,7 +45,7 @@ fig, ax = plt.subplots(figsize=(8, 6)) # Erstelle eine Figur mit 8 x 6 Zoll
 ax.plot(x, y,'-', linewidth = 2)
 
 plt.xlabel('Zeit / s')
-plt.ylabel('Druck2 / mbar')
+plt.ylabel('Druck1 / mbar')
 #plt.show()
 
 x_vars = []
@@ -56,7 +58,7 @@ for i in range(len(change_indices)-1):
     bereich = int((change_indices[i+1]-change_indices[i])/2) # Letzte 50%
     bereich = int((change_indices[i+1]-change_indices[i])) # Alle
     x = data['t_mess'][change_indices[i+1]-bereich:change_indices[i+1]]
-    y = data['Druck2'][change_indices[i+1]-bereich:change_indices[i+1]]
+    y = data['Druck1'][change_indices[i+1]-bereich:change_indices[i+1]]
     T = data['T_Verdampfer'][change_indices[i+1]-bereich:change_indices[i+1]]
     mean_Abschnitte.append(np.mean(y))
     std_Abschnitte.append(np.std(y))

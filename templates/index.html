@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Plot Example</title>
+</head>
+<body>
+    <h1>Flask Plot Example</h1>
+    <img src="{{ url_for('plot_png') }}">
+
+    <h1>Auswahl von X-Werten</h1>
+    <form action="/graph" method="POST">
+        <p>
+            <label for="x1">X-Wert 1:</label>
+            <input type="number" name="x_values" value="0">
+        </p>
+        <p>
+            <label for="x2">X-Wert 2:</label>
+            <input type="number" name="x_values" value="0">
+        </p>
+        <p>
+            <label for="x3">X-Wert 3:</label>
+            <input type="number" name="x_values" value="0">
+        </p>
+        <input type="submit" value="Grafik generieren">
+    </form>
+
+    
+</body>
+</html>
